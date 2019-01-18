@@ -89,9 +89,9 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-ITEM_PIPELINES = {
-   'scrapy.pipelines.images.ImagesPipeline': 1,
-}
-IMAGES_URLS_FIELD = "front_img_url_download"     # ITEM 中的图片 URL，用于下载
-PROJECT_IMAGE_PATH = os.path.abspath(os.path.dirname(__file__))   # 获取当前文件所在目录
-IMAGES_STORE = os.path.join(PROJECT_IMAGE_PATH, "images")         # 下载图片的保存位置
+#ITEM_PIPELINES = {
+#   'scrapy.pipelines.images.ImagesPipeline': 1,
+#}
+#IMAGES_URLS_FIELD = "front_img_url_download"     # ITEM 中的图片 URL，用于下载
+#PROJECT_IMAGE_PATH = os.path.abspath(os.path.dirname(__file__))   # 获取当前文件所在目录
+#IMAGES_STORE = os.path.join(PROJECT_IMAGE_PATH, "images")         # 下载图片的保存位置
