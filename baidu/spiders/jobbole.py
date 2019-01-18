@@ -30,4 +30,21 @@ class JobboleSpider(scrapy.Spider):
          if next_url:
              yield Request(url=next_url, callback=self.parse)
 
+         def parse_detail(self, response):
+             # 通过Itemloader加载Item
+             image_url = response.meta.get('image_url')  # 传递图片的url
+             item_loader = ArticleItemLoader(item=ArticleItem(), response=response)  # 将类设置为自定义的Itemloader类
+             item_loader.add_xpath('title', '//*[@class="entry-header"]/h1/text()')  # 通过xpath来提取数据
+             item_loader.add_value('url', response.url)  # 直接添加值
+             item_loader.add_value('url_object_id', get_md5(response.url))
+             item_loader.add_xpath('create_date', '//p[@class="entry-meta-hide-on-mobile"]/text()[1]')
+             item_loader.add_value('image_url', [image_url])
+             item_loader.add_xpath('praise_nums', "//span[contains(@class,'vote-post-up')]/h10/text()")
+             item_loader.add_xpath('fav_nums', "//span[contains(@class,'bookmark-btn')]/text()")
+             item_loader.add_xpath('comment_nums', "//a[@href='#article-comment']/span/text()")
+             item_loader.add_xpath('content', '//*[@class="entry"]/p | //*[@class="entry"]/h3 | //*[@class="entry"]/ul')
+
+             article_item = item_loader.load_item()  # 将规则进行解析，返回的是list
+             yield article_item
+
         pass
