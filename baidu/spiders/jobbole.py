@@ -6,7 +6,11 @@ from scrapy import Request
 from scrapy.commands import parse
 from scrapy.http import response
 
-from baidu.items import BaiduItem
+from baidu.items import  ArticleItemLoader, ArticleItem
+
+
+def get_md5(url):
+    pass
 
 
 class JobboleSpider(scrapy.Spider):
