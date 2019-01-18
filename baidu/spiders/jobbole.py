@@ -8,4 +8,6 @@ class JobboleSpider(scrapy.Spider):
     start_urls = ['http://blog.jobbole.com/']
 
     def parse(self, response):
+        print("tttt")
+        print(response)
         pass
